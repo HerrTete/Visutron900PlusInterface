@@ -1,0 +1,32 @@
+COMP900
+DATA
+CO
+RIGHT
+SPH_F_R: + 3.75
+SPH_N_R: + 4.50
+CYLC_R  : - 3.50
+AXIS_R :     45
+PRISM_R:   5.50 IN
+ACC_R  :   0.00
+VIS_S_R:   0.60
+VIS_C_R:   0.80
+PD_R   :  31.50
+LEFT
+SPH_F_L: + 3.75
+SPH_N_L: + 4.50
+CYLC_L  : - 3.50
+AXIS_L :     45
+PRISM_L:   5.50 IN
+ACC_L  :   0.00
+VIS_S_L:   0.60
+VIS_C_L:   0.80
+PD_L   :  31.50
+BOTH
+HSA    :     16
+PD_G  :  64.00
+BLUR   :   0.00
+VIS_S_B:   0.60
+VIS_C_B:   0.80
+PATNAME:Hans Mustermann
+PAT_ID :0123456789
+
