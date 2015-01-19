@@ -42,14 +42,16 @@
     <Compile Include="DTOs\Acknowlege.cs" />
     <Compile Include="DTOs\PrismaHorizontal.cs" />
     <Compile Include="DTOs\PrismaVertikal.cs" />
-    <Compile Include="DTOs\RefraktionDataInOut.cs" />
+    <Compile Include="DTOs\RefraktionDataOut.cs" />
+    <Compile Include="MessageMapper.cs" />
     <Compile Include="Visutron900PlusSerialAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DTOs\RefraktionDataIn.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="MessagePattern\TelegrammVisutron900" />
+    <None Include="MessagePattern\TelegrammVisutron900_In_Ref" />
+    <None Include="MessagePattern\TelegrammVisutron900_Out_Ref" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

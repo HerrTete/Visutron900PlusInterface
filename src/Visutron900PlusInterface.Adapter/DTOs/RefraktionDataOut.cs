@@ -2,7 +2,7 @@
 
 namespace Visutron900PlusInterface.Adapter.DTOs
 {
-    public class RefraktionDataInOut : RefraktionDataIn
+    public class RefraktionDataOut : RefraktionDataIn
     {
         public double AkkommodationsbreiteRechts { get; set; }
         public double AkkommodationsbreiteLinks { get; set; }
