@@ -34,7 +34,7 @@ namespace Visutron900PlusInterface.Adapter.Test
 
             var bytes = MessageMapper.Map(inputData);
 
-            var refBytes = GetRefMessage("Visutron900PlusInterface.Adapter.MessagePattern.TelegrammVisutron900_In_Ref");
+            var refBytes = GetRefMessage("Visutron900PlusInterface.Adapter.Test.ReferenceMessages.TelegrammVisutron900_In_Ref");
 
 
             for (int i = 0; i < refBytes.Length; i++)
@@ -49,7 +49,7 @@ namespace Visutron900PlusInterface.Adapter.Test
         [TestMethod]
         public void MapFromOutMessageTest()
         {
-            var refBytes = GetRefMessage("Visutron900PlusInterface.Adapter.MessagePattern.TelegrammVisutron900_Out_Ref");
+            var refBytes = GetRefMessage("Visutron900PlusInterface.Adapter.Test.ReferenceMessages.TelegrammVisutron900_Out_Ref");
             var mapperResult = MessageMapper.Map(refBytes);
         }
 
@@ -60,7 +60,7 @@ namespace Visutron900PlusInterface.Adapter.Test
                 assemblyPath,
                 "Visutron900PlusInterface.Adapter.dll");
 
-            var assembly = Assembly.LoadFile(targetAssemblyPath);
+            var assembly = Assembly.GetExecutingAssembly();
 
             var stream = assembly.GetManifestResourceStream(resourceName);
 

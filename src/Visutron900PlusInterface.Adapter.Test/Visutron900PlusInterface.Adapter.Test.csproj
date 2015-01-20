@@ -59,6 +59,12 @@
       <Name>Visutron900PlusInterface.Adapter</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ReferenceMessages\TelegrammVisutron900_In_Ref" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ReferenceMessages\TelegrammVisutron900_Out_Ref" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
