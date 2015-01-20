@@ -48,7 +48,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DTOs\RefraktionDataIn.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="MessagePattern\TelegrammVisutron900_In_Pattern" />
+    <EmbeddedResource Include="MessagePattern\TelegrammVisutron900_Out_Pattern" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MessagePattern\TelegrammVisutron900_In_Ref" />
     <EmbeddedResource Include="MessagePattern\TelegrammVisutron900_Out_Ref" />

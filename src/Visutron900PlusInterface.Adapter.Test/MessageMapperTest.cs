@@ -13,9 +13,37 @@ namespace Visutron900PlusInterface.Adapter.Test
         {
             var inputData = new RefraktionDataIn();
 
+            inputData.SphäreFernRechts = 3.75;
+            inputData.SphäreNahRechts = 4.5;
+            inputData.ZylinderRechts = -3.5;
+            inputData.AchseRechts = 45;
+            inputData.PrismaRechts = 5.50;
+            inputData.PupillendistanzRechts = 31.5;
+
+            inputData.SphäreFernLinks = -1.5;
+            inputData.SphäreNahLinks = -0.5;
+            inputData.ZylinderLinks = -2.5;
+            inputData.AchseLinks = 145;
+            inputData.PrismaLinks= 3.5;
+            inputData.PupillendistanzLinks= 32.5;
+
+            inputData.Pupillendistanz = 64;
+
+            inputData.Patientenname = "Hans.Mustermann";
+            inputData.PatientenID = "0123456789";
+
             var bytes = MessageMapper.Map(inputData);
 
             var refBytes = GetRefMessage("Visutron900PlusInterface.Adapter.MessagePattern.TelegrammVisutron900_In_Ref");
+
+
+            for (int i = 0; i < refBytes.Length; i++)
+            {
+                var actualByte = bytes[i];
+                var expectedByte = refBytes[i];
+
+                Assert.AreEqual(expectedByte, actualByte, "An Stelle {0} gab es eine Abweichung.", i.ToString("X"));
+            }
         }
         
         [TestMethod]

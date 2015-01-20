@@ -1,0 +1,32 @@
+COMP900
+DATA
+CO
+RIGHT
+SPH_F_R:
+SPH_N_R:
+CYLC_R  :
+AXIS_R :
+PRISM_R:
+ACC_R  :
+VIS_S_R:
+VIS_C_R:
+PD_R   :
+LEFT
+SPH_F_L:
+SPH_N_L:
+CYLC_L  :
+AXIS_L :     45
+PRISM_L:
+ACC_L  :
+VIS_S_L:
+VIS_C_L:
+PD_L   :
+BOTH
+HSA    :
+PD_G  :
+BLUR   :
+VIS_S_B:
+VIS_C_B:
+PATNAME:
+PAT_ID :
+
