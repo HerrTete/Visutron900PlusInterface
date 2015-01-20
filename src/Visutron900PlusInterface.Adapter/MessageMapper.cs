@@ -1,4 +1,6 @@
-﻿using Visutron900PlusInterface.Adapter.DTOs;
+﻿using System.Reflection;
+
+using Visutron900PlusInterface.Adapter.DTOs;
 
 namespace Visutron900PlusInterface.Adapter
 {
@@ -9,9 +11,9 @@ namespace Visutron900PlusInterface.Adapter
             return new byte[0];
         }
 
-        internal static byte[] Map(RefraktionDataOut inputData)
+        internal static RefraktionDataOut Map(byte[] inputData)
         {
-            return new byte[0];
+            return new RefraktionDataOut();
         }
     }
 }

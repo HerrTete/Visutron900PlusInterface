@@ -53,6 +53,12 @@
     <Compile Include="MessageMapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Visutron900PlusInterface.Adapter\Visutron900PlusInterface.Adapter.csproj">
+      <Project>{D92EC2DB-41A3-4A25-930B-4DE89000F79F}</Project>
+      <Name>Visutron900PlusInterface.Adapter</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

@@ -50,8 +50,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="MessagePattern\TelegrammVisutron900_In_Ref" />
-    <None Include="MessagePattern\TelegrammVisutron900_Out_Ref" />
+    <EmbeddedResource Include="MessagePattern\TelegrammVisutron900_In_Ref" />
+    <EmbeddedResource Include="MessagePattern\TelegrammVisutron900_Out_Ref" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
