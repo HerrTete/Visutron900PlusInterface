@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visutron900PlusInterface.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visutron900PlusInterface.Adapter", "Visutron900PlusInterface.Adapter\Visutron900PlusInterface.Adapter.csproj", "{D92EC2DB-41A3-4A25-930B-4DE89000F79F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3A90B69A-F5E8-461D-B2D9-DECCED7EEE91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visutron900PlusInterface.Adapter.Test", "Visutron900PlusInterface.Adapter.Test\Visutron900PlusInterface.Adapter.Test.csproj", "{7197AE35-5C9C-45FE-9A78-439FB7BA9F4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +25,15 @@ Global
 		{D92EC2DB-41A3-4A25-930B-4DE89000F79F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D92EC2DB-41A3-4A25-930B-4DE89000F79F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D92EC2DB-41A3-4A25-930B-4DE89000F79F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7197AE35-5C9C-45FE-9A78-439FB7BA9F4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7197AE35-5C9C-45FE-9A78-439FB7BA9F4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7197AE35-5C9C-45FE-9A78-439FB7BA9F4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7197AE35-5C9C-45FE-9A78-439FB7BA9F4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7197AE35-5C9C-45FE-9A78-439FB7BA9F4C} = {3A90B69A-F5E8-461D-B2D9-DECCED7EEE91}
 	EndGlobalSection
 EndGlobal
