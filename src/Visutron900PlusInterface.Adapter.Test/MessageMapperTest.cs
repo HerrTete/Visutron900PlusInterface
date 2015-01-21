@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Reflection;
+﻿using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Visutron900PlusInterface.Adapter.DTOs;
 
@@ -42,7 +41,7 @@ namespace Visutron900PlusInterface.Adapter.Test
                 var actualByte = bytes[i];
                 var expectedByte = refBytes[i];
 
-                Assert.AreEqual(expectedByte, actualByte, "An Stelle {0} gab es eine Abweichung.", i.ToString("X"));
+                Assert.AreEqual(expectedByte.ToString("X"), actualByte.ToString("X"), "An Stelle {0} gab es eine Abweichung.", i.ToString("X"));
             }
         }
         
@@ -55,11 +54,6 @@ namespace Visutron900PlusInterface.Adapter.Test
 
         private byte[] GetRefMessage(string resourceName)
         {
-            var assemblyPath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
-            var targetAssemblyPath = Path.Combine(
-                assemblyPath,
-                "Visutron900PlusInterface.Adapter.dll");
-
             var assembly = Assembly.GetExecutingAssembly();
 
             var stream = assembly.GetManifestResourceStream(resourceName);

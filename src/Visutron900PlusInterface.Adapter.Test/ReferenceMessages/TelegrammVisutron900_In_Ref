@@ -8,19 +8,19 @@ CYLC_R  : - 3.50
 AXIS_R :     45
 PRISM_R:   5.50 IN
 ACC_R  :   0.00
-VIS_S_R:   0.60
-VIS_C_R:   0.80
+VIS_S_R:   0.00
+VIS_C_R:   0.00
 PD_R   :  31.50
 LEFT
-SPH_F_L: + 3.75
-SPH_N_L: + 4.50
-CYLC_L  : - 3.50
-AXIS_L :     45
-PRISM_L:   5.50 IN
+SPH_F_L: - 1.50
+SPH_N_L: - 0.50
+CYLC_L  : - 2.50
+AXIS_L :    145
+PRISM_L:   3.50 IN
 ACC_L  :   0.00
-VIS_S_L:   0.60
-VIS_C_L:   0.80
-PD_L   :  31.50
+VIS_S_L:   0.00
+VIS_C_L:   0.00
+PD_L   :  32.50
 BOTH
 HSA    :     16
 PD_G  :  64.00
