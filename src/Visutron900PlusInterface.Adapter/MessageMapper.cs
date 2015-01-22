@@ -83,7 +83,7 @@ namespace Visutron900PlusInterface.Adapter
                 case 6:
                 case 7:
                     {
-                        outputString = GetDoubleAlsString(0.0, false);
+                        outputString = GetDoubleAlsString(0.0);
                         break;
                     }
                 case 8:
@@ -121,12 +121,39 @@ namespace Visutron900PlusInterface.Adapter
                 case 15:
                 case 16:
                     {
-                        outputString = GetDoubleAlsString(0.0, false);
+                        outputString = GetDoubleAlsString(0.0);
                         break;
                     }
                 case 17:
                     {
                         outputString = GetDoubleAlsString(inputData.PupillendistanzLinks);
+                        break;
+                    }
+                case 18:
+                    {
+                        outputString = GetIntAlsString(0);
+                        break;
+                    }
+                case 19:
+                    {
+                        outputString = GetDoubleAlsString(inputData.Pupillendistanz);
+                        break;
+                    }
+                case 20:
+                case 21:
+                case 22:
+                    {
+                        outputString = GetDoubleAlsString(0.0);
+                        break;
+                    }
+                case 23:
+                    {
+                        outputString = inputData.Patientenname;
+                        break;
+                    }
+                case 24:
+                    {
+                        outputString = inputData.PatientenID;
                         break;
                     }
             }

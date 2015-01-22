@@ -28,7 +28,7 @@ namespace Visutron900PlusInterface.Adapter.Test
 
             inputData.Pupillendistanz = 64;
 
-            inputData.Patientenname = "Hans.Mustermann";
+            inputData.Patientenname = "Hans Mustermann";
             inputData.PatientenID = "0123456789";
 
             var bytes = MessageMapper.Map(inputData);
@@ -41,7 +41,7 @@ namespace Visutron900PlusInterface.Adapter.Test
                 var actualByte = bytes[i];
                 var expectedByte = refBytes[i];
 
-                Assert.AreEqual(expectedByte.ToString("X"), actualByte.ToString("X"), "An Stelle {0} gab es eine Abweichung.", i.ToString("X"));
+                Assert.AreEqual(expectedByte.ToString("X"), actualByte.ToString("X"), "An Stelle {0}/{1} gab es eine Abweichung.", i.ToString("X"), i);
             }
         }
         
