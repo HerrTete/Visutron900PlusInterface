@@ -43,6 +43,7 @@
     <Compile Include="DTOs\PrismaHorizontal.cs" />
     <Compile Include="DTOs\PrismaVertikal.cs" />
     <Compile Include="DTOs\RefraktionDataOut.cs" />
+    <Compile Include="IndexAttribute.cs" />
     <Compile Include="MessageMapper.cs" />
     <Compile Include="Visutron900PlusSerialAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

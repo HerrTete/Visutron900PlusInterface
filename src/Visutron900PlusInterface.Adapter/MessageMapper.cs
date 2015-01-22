@@ -1,7 +1,6 @@
 ﻿using System.Globalization;
 using System.Reflection;
 using System.Text;
-
 using Visutron900PlusInterface.Adapter.DTOs;
 
 namespace Visutron900PlusInterface.Adapter
@@ -50,27 +49,47 @@ namespace Visutron900PlusInterface.Adapter
         private static byte[] GetValue(RefraktionDataIn inputData, int index)
         {
             string outputString = null;
+            var data = GetValueWithIndex(inputData, index);
 
             switch (index)
             {
                 case 0:
+                case 1:
+                case 9:
+                case 10:
                     {
-                        outputString = GetDoubleAlsString(inputData.SphäreFernRechts, true);
+                        outputString = GetDoubleAlsString((double)data, true);
                         break;
                     }
-                case 1:
+                case 5:
+                case 6:
+                case 7:
+                case 20:
+                case 21:
+                case 22:
+                case 14:
+                case 15:
+                case 16:
                     {
-                        outputString = GetDoubleAlsString(inputData.SphäreNahRechts, true);
+                        outputString = GetValueAsString(0.0);
                         break;
                     }
                 case 2:
-                    {
-                        outputString = GetDoubleAlsString(inputData.ZylinderRechts);
-                        break;
-                    }
+                case 8:
+                case 11:
+                case 17:
+                case 19:
+                case 23:
+                case 24:
+                case 12:
                 case 3:
                     {
-                        outputString = GetIntAlsString(inputData.AchseRechts);
+                        outputString = GetValueAsString(data);
+                        break;
+                    }
+                case 18:
+                    {
+                        outputString = GetValueAsString(0);
                         break;
                     }
                 case 4:
@@ -79,81 +98,10 @@ namespace Visutron900PlusInterface.Adapter
                         outputString += " " + inputData.GesamtprismaHorizontal;
                         break;
                     }
-                case 5:
-                case 6:
-                case 7:
-                    {
-                        outputString = GetDoubleAlsString(0.0);
-                        break;
-                    }
-                case 8:
-                    {
-                        outputString = GetDoubleAlsString(inputData.PupillendistanzRechts);
-                        break;
-                    }
-                case 9:
-                    {
-                        outputString = GetDoubleAlsString(inputData.SphäreFernLinks, true);
-                        break;
-                    }
-                case 10:
-                    {
-                        outputString = GetDoubleAlsString(inputData.SphäreNahLinks, true);
-                        break;
-                    }
-                case 11:
-                    {
-                        outputString = GetDoubleAlsString(inputData.ZylinderLinks);
-                        break;
-                    }
-                case 12:
-                    {
-                        outputString = GetIntAlsString(inputData.AchseLinks);
-                        break;
-                    }
                 case 13:
                     {
                         outputString = GetDoubleAlsString(inputData.PrismaLinks);
                         outputString += " " + inputData.GesamtprismaVertikal;
-                        break;
-                    }
-                case 14:
-                case 15:
-                case 16:
-                    {
-                        outputString = GetDoubleAlsString(0.0);
-                        break;
-                    }
-                case 17:
-                    {
-                        outputString = GetDoubleAlsString(inputData.PupillendistanzLinks);
-                        break;
-                    }
-                case 18:
-                    {
-                        outputString = GetIntAlsString(0);
-                        break;
-                    }
-                case 19:
-                    {
-                        outputString = GetDoubleAlsString(inputData.Pupillendistanz);
-                        break;
-                    }
-                case 20:
-                case 21:
-                case 22:
-                    {
-                        outputString = GetDoubleAlsString(0.0);
-                        break;
-                    }
-                case 23:
-                    {
-                        outputString = inputData.Patientenname;
-                        break;
-                    }
-                case 24:
-                    {
-                        outputString = inputData.PatientenID;
                         break;
                     }
             }
@@ -198,6 +146,49 @@ namespace Visutron900PlusInterface.Adapter
             stream.Dispose();
 
             return resouceBytes;
+        }
+
+        private static object GetValueWithIndex(object instance, int i)
+        {
+            object retVal = null;
+            var properties = instance.GetType().GetProperties();
+            foreach (var propertyInfo in properties)
+            {
+                var reihenfolgeAttribute = propertyInfo.GetCustomAttributes(typeof(IndexAttribute), true);
+                foreach (var attribute in reihenfolgeAttribute)
+                {
+                    var reihenfolge = attribute as IndexAttribute;
+                    if (reihenfolge != null)
+                    {
+                        if (reihenfolge.Index == i)
+                        {
+                            retVal = propertyInfo.GetValue(instance);
+                        }
+                    }
+                }
+            }
+            return retVal;
+        }
+
+        private static string GetValueAsString(object value)
+        {
+            string retVal = null;
+            var type = value.GetType();
+            var typeString = type.ToString();
+            switch (typeString)
+            {
+                case "System.Double":
+                    retVal = GetDoubleAlsString((double)value);
+                    break;
+                case "System.Int32":
+                    retVal = GetIntAlsString((int)value);
+                    break;
+                case "System.String":
+                    retVal = ((string)value);
+                    break;
+            }
+
+            return retVal;
         }
     }
 }
