@@ -2,10 +2,24 @@
 {
     public class RefraktionDataIn
     {
-        [Index(0)]
+        [Index(5)]
+        [Index(6)]
+        [Index(7)]
+        [Index(14)]
+        [Index(15)]
+        [Index(16)]
+        [Index(20)]
+        [Index(21)]
+        [Index(22)]
+        public double DoubleDefault { get; private set; }
+
+        [Index(18)]
+        public int IntDefault { get; private set; }
+
+        [Index(0, ForcePlusSign = true)]
         public double SphäreFernRechts { get; set; }
 
-        [Index(1)]
+        [Index(1, ForcePlusSign = true)]
         public double SphäreNahRechts { get; set; }
 
         [Index(2)]
@@ -20,11 +34,10 @@
         [Index(8)]
         public double PupillendistanzRechts { get; set; }
 
-
-        [Index(9)]
+        [Index(9, ForcePlusSign = true)]
         public double SphäreFernLinks { get; set; }
 
-        [Index(10)]
+        [Index(10, ForcePlusSign = true)]
         public double SphäreNahLinks { get; set; }
 
         [Index(11)]
