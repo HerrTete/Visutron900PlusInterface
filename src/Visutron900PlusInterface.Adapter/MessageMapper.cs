@@ -19,7 +19,7 @@ namespace Visutron900PlusInterface.Adapter
             {
                 output[outputPos] = inputPattern[i];
                 outputPos++;
-                if (inputPattern[i] == 0x3A)
+                if (inputPattern[i] == ':')
                 {
                     var valuePart = GetValue(inputData, valuePosition);
                     AppendValues(ref output, ref outputPos, valuePart);
@@ -28,7 +28,12 @@ namespace Visutron900PlusInterface.Adapter
             }
             return output;
         }
-
+        
+        internal static RefraktionDataOut Map(byte[] inputData)
+        {
+            return new RefraktionDataOut();
+        }
+        
         private static void AppendValues(ref byte[] output, ref int outputPos, byte[] valuePart)
         {
             if (valuePart != null)
@@ -39,11 +44,6 @@ namespace Visutron900PlusInterface.Adapter
                     outputPos++;
                 }
             }
-        }
-
-        internal static RefraktionDataOut Map(byte[] inputData)
-        {
-            return new RefraktionDataOut();
         }
 
         private static byte[] GetValue(RefraktionDataIn inputData, int index)
