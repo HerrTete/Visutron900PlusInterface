@@ -1,4 +1,7 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.Reflection;
 using System.Text;
 using Visutron900PlusInterface.Adapter.DTOs;
@@ -9,41 +12,112 @@ namespace Visutron900PlusInterface.Adapter
     {
         internal static byte[] Map(RefraktionDataIn inputData)
         {
-            var inputPattern = GetInputPattern();
-            var output = new byte[inputPattern.Length * 2];
+            var template = ValueConverter.GetInputPattern();
+            var returnBuffer = new List<byte>();
 
-            var outputPos = 0;
             var valuePosition = 0;
 
-            for (int i = 0; i < inputPattern.Length; i++)
+            foreach (var templateByte in template)
             {
-                output[outputPos] = inputPattern[i];
-                outputPos++;
-                if (inputPattern[i] == ':')
+                returnBuffer.Add(templateByte);
+
+                if (templateByte == ':')
                 {
                     var valuePart = GetValue(inputData, valuePosition);
-                    AppendValues(ref output, ref outputPos, valuePart);
+                    returnBuffer.AddRange(valuePart);
                     valuePosition++;
                 }
             }
-            return output;
+
+            return returnBuffer.ToArray();
         }
-        
+
         internal static RefraktionDataOut Map(byte[] inputData)
         {
-            return new RefraktionDataOut();
-        }
-        
-        private static void AppendValues(ref byte[] output, ref int outputPos, byte[] valuePart)
-        {
-            if (valuePart != null)
+            var isInValuePart = false;
+            var valueCounter = 0;
+            var valueContent = new List<byte>();
+            var contentList = new List<string>();
+            foreach (var inputByte in inputData)
             {
-                for (int j = 0; j < valuePart.Length; j++)
+                if (inputByte == 0x0D)//0x0D => Carriage Return
                 {
-                    output[outputPos] = valuePart[j];
-                    outputPos++;
+                    if (isInValuePart)
+                    {
+                        valueCounter++;
+                        contentList.Add(Encoding.ASCII.GetString(valueContent.ToArray()));
+                    }
+                    isInValuePart = false;
+                }
+                if (isInValuePart)
+                {
+                    valueContent.Add(inputByte);
+                }
+                if (inputByte == ':')
+                {
+                    isInValuePart = true;
+                    valueContent = new List<byte>();
                 }
             }
+
+            return GenerateRefraktionData(contentList);
+        }
+
+        private static RefraktionDataOut GenerateRefraktionData(List<string> valueList)
+        {
+            var refraktionData = new RefraktionDataOut();
+            var properties = refraktionData.GetType().GetProperties();
+
+            for (int i = 0; i < valueList.Count; i++)
+            {
+                foreach (var propertyInfo in properties)
+                {
+                    if (propertyInfo.SetMethod == null)
+                    {
+                        continue;
+                    }
+                    var attributes = propertyInfo.GetCustomAttributes();
+                    foreach (var attribute in attributes)
+                    {
+                        var indexer = attribute as IndexAttribute;
+                        if (indexer != null && indexer.Index == i)
+                        {
+                            var targetType = propertyInfo.PropertyType;
+                            var targetTypeString = targetType.ToString();
+                            object targetValue = null;
+                            var sourceStringValue = valueList[i];
+                            try
+                            {
+                                switch (targetTypeString)
+                                {
+                                    case "System.String":
+                                        targetValue = sourceStringValue;
+                                        break;
+                                    case "System.Double":
+                                        targetValue = ValueConverter.ConvertStringToDouble(sourceStringValue);
+                                        break;
+                                    case "System.Int32":
+                                        targetValue = int.Parse(sourceStringValue);
+                                        break;
+                                    case "Visutron900PlusInterface.Adapter.DTOs.PrismaHorizontal":
+                                        break;
+                                    case "Visutron900PlusInterface.Adapter.DTOs.PrismaVertikal":
+                                        break;
+                                }
+
+                                propertyInfo.SetValue(refraktionData, targetValue);
+                            }
+                            catch (Exception exception)
+                            {
+                                Trace.WriteLine("Exception in [GenerateRefraktionData] bei " + propertyInfo.Name);
+                                Trace.WriteLine(exception);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return refraktionData;
         }
 
         private static byte[] GetValue(RefraktionDataIn inputData, int index)
@@ -51,7 +125,7 @@ namespace Visutron900PlusInterface.Adapter
             string outputString = null;
             var data = GetValueWithIndex(inputData, index);
             var forcePluseSign = GetIndexSettingWithIndex(inputData, index);
-            outputString = GetValueAsString(data, forcePluseSign);
+            outputString = ValueConverter.GetValueAsString(data, forcePluseSign);
             return outputString == null ? null : Encoding.ASCII.GetBytes(outputString);
         }
 
@@ -93,7 +167,7 @@ namespace Visutron900PlusInterface.Adapter
                         {
                             if (retVal != null)
                             {
-                                retVal = GetDoubleAlsString((double)retVal) + " " + propertyInfo.GetValue(instance);
+                                retVal = ValueConverter.GetDoubleAlsString((double)retVal) + " " + propertyInfo.GetValue(instance);
                             }
                             else
                             {
@@ -105,8 +179,35 @@ namespace Visutron900PlusInterface.Adapter
             }
             return retVal;
         }
+    }
 
-        private static string GetValueAsString(object value, bool focePlusSign = false)
+    internal class ValueConverter
+    {
+        private static List<string> PrismaValues { get; set; }
+
+        static ValueConverter()
+        {
+            PrismaValues = new List<string>();
+            PrismaValues.AddRange(Enum.GetNames(typeof(PrismaHorizontal)));
+            PrismaValues.AddRange(Enum.GetNames(typeof(PrismaVertikal)));
+        }
+
+        internal static double ConvertStringToDouble(string inputString)
+        {
+            foreach (var prismaValue in PrismaValues)
+            {
+                if (inputString.Contains(prismaValue))
+                {
+                    inputString = inputString.Replace(prismaValue, string.Empty);
+                }
+            }
+
+            inputString = inputString.Replace(" ", string.Empty);
+            inputString = inputString.Replace('.', ',');
+            return double.Parse(inputString);
+        }
+
+        internal static string GetValueAsString(object value, bool focePlusSign = false)
         {
             string retVal = null;
             var type = value.GetType();
@@ -114,10 +215,10 @@ namespace Visutron900PlusInterface.Adapter
             switch (typeString)
             {
                 case "System.Double":
-                    retVal = GetDoubleAlsString((double)value, focePlusSign);
+                    retVal = ValueConverter.GetDoubleAlsString((double)value, focePlusSign);
                     break;
                 case "System.Int32":
-                    retVal = GetIntAlsString((int)value);
+                    retVal = ValueConverter.GetIntAlsString((int)value);
                     break;
                 case "System.String":
                     retVal = ((string)value);
@@ -127,7 +228,7 @@ namespace Visutron900PlusInterface.Adapter
             return retVal;
         }
 
-        private static string GetDoubleAlsString(double inputValue, bool focePlusSign = false)
+        internal static string GetDoubleAlsString(double inputValue, bool focePlusSign = false)
         {
             var stringRepresentation = inputValue.ToString("0.00").PadLeft(7);
 
@@ -144,13 +245,7 @@ namespace Visutron900PlusInterface.Adapter
             return stringRepresentation.Replace(',', '.');
         }
 
-        private static string GetIntAlsString(int inputValue)
-        {
-            var stringRepresentation = inputValue.ToString(CultureInfo.InvariantCulture).PadLeft(7);
-            return stringRepresentation.Replace(',', '.');
-        }
-
-        private static byte[] GetInputPattern()
+        internal static byte[] GetInputPattern()
         {
             var assembly = Assembly.GetExecutingAssembly();
 
@@ -164,6 +259,12 @@ namespace Visutron900PlusInterface.Adapter
             stream.Dispose();
 
             return resouceBytes;
+        }
+
+        private static string GetIntAlsString(int inputValue)
+        {
+            var stringRepresentation = inputValue.ToString(CultureInfo.InvariantCulture).PadLeft(7);
+            return stringRepresentation.Replace(',', '.');
         }
     }
 }

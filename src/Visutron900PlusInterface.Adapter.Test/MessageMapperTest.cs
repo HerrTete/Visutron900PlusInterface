@@ -44,6 +44,8 @@ namespace Visutron900PlusInterface.Adapter.Test
 
                 Assert.AreEqual(expectedByte.ToString("X"), actualByte.ToString("X"), "An Stelle {0}/{1} gab es eine Abweichung.", i.ToString("X"), i);
             }
+
+            Assert.AreEqual(refBytes.Length, bytes.Length);
         }
 
         [TestMethod]
@@ -70,9 +72,9 @@ namespace Visutron900PlusInterface.Adapter.Test
             outputDataRef.PrismaLinks = 3.5;
             outputDataRef.PupillendistanzLinks = 32.5;
 
-            outputDataRef.AkkommodationsbreiteRechts = 0.25;
-            outputDataRef.Visus_S_C_Rechts = 0.40;
-            outputDataRef.Visus_C_C_Rechts = 0.80;
+            outputDataRef.AkkommodationsbreiteLinks = 0.25;
+            outputDataRef.Visus_S_C_Links = 0.40;
+            outputDataRef.Visus_C_C_Links = 0.80;
 
             outputDataRef.Pupillendistanz = 64;
 
@@ -90,7 +92,39 @@ namespace Visutron900PlusInterface.Adapter.Test
 
             var output = MessageMapper.Map(refBytes);
 
-            Assert.AreEqual(outputDataRef.AchseLinks, output.AchseLinks);
+            Assert.AreEqual(outputDataRef.SphäreFernRechts, output.SphäreFernRechts, "SphäreFernRechts");
+            Assert.AreEqual(outputDataRef.SphäreNahRechts, output.SphäreNahRechts, "SphäreNahRechts");
+            Assert.AreEqual(outputDataRef.ZylinderRechts, output.ZylinderRechts, "ZylinderRechts");
+            Assert.AreEqual(outputDataRef.AchseRechts, output.AchseRechts, "AchseRechts");
+            Assert.AreEqual(outputDataRef.PrismaRechts, output.PrismaRechts, "PrismaRechts");
+            Assert.AreEqual(outputDataRef.PupillendistanzRechts, output.PupillendistanzRechts, "PupillendistanzRechts");
+
+            Assert.AreEqual(outputDataRef.AkkommodationsbreiteRechts, output.AkkommodationsbreiteRechts, "AkkommodationsbreiteRechts");
+            Assert.AreEqual(outputDataRef.Visus_S_C_Rechts, output.Visus_S_C_Rechts, "Visus_S_C_Rechts");
+            Assert.AreEqual(outputDataRef.Visus_C_C_Rechts, output.Visus_C_C_Rechts, "Visus_C_C_Rechts");
+
+            Assert.AreEqual(outputDataRef.SphäreFernLinks, output.SphäreFernLinks, "SphäreFernLinks");
+            Assert.AreEqual(outputDataRef.SphäreNahLinks, output.SphäreNahLinks, "SphäreNahLinks");
+            Assert.AreEqual(outputDataRef.ZylinderLinks, output.ZylinderLinks, "ZylinderLinks");
+            Assert.AreEqual(outputDataRef.AchseLinks, output.AchseLinks, "AchseLinks");
+            Assert.AreEqual(outputDataRef.PrismaLinks, output.PrismaLinks, "PrismaLinks");
+            Assert.AreEqual(outputDataRef.PupillendistanzLinks, output.PupillendistanzLinks, "PupillendistanzLinks");
+
+            Assert.AreEqual(outputDataRef.AkkommodationsbreiteLinks, output.AkkommodationsbreiteLinks, "AkkommodationsbreiteLinks");
+            Assert.AreEqual(outputDataRef.Visus_S_C_Links, output.Visus_S_C_Links, "Visus_S_C_Links");
+            Assert.AreEqual(outputDataRef.Visus_C_C_Links, output.Visus_C_C_Links, "Visus_C_C_Links");
+
+            Assert.AreEqual(outputDataRef.Pupillendistanz, output.Pupillendistanz, "Pupillendistanz");
+
+            Assert.AreEqual(outputDataRef.HornhautScheitelAbstand, output.HornhautScheitelAbstand, "HornhautScheitelAbstand");
+            Assert.AreEqual(outputDataRef.Fusionsbreite, output.Fusionsbreite, "Fusionsbreite");
+            Assert.AreEqual(outputDataRef.Visus_S_C, output.Visus_S_C, "Visus_S_C");
+            Assert.AreEqual(outputDataRef.Visus_C_C, output.Visus_C_C, "Visus_C_C");
+
+            Assert.AreEqual(outputDataRef.Patientenname, output.Patientenname, "Patientenname");
+            Assert.AreEqual(outputDataRef.PatientenID, output.PatientenID, "PatientenID");
+
+            Assert.AreEqual(outputDataRef.RefraktionsZeitpunkt, output.RefraktionsZeitpunkt, "RefraktionsZeitpunkt");
         }
 
         private byte[] GetRefMessage(string resourceName)
