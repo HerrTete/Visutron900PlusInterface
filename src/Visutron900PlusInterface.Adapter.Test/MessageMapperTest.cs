@@ -11,7 +11,7 @@ namespace Visutron900PlusInterface.Adapter.Test
         [TestMethod]
         public void MapToInMessageTest()
         {
-            var inputData = new RefraktionDataIn();
+            var inputData = new RefraktionData();
 
             inputData.SphäreFernRechts = 3.75;
             inputData.SphäreNahRechts = 4.5;
@@ -52,7 +52,7 @@ namespace Visutron900PlusInterface.Adapter.Test
         public void MapFromOutMessageTest()
         {
 
-            var outputDataRef = new RefraktionDataOut();
+            var outputDataRef = new RefraktionData();
 
             outputDataRef.SphäreFernRechts = 3.75;
             outputDataRef.SphäreNahRechts = 4.5;
@@ -79,9 +79,12 @@ namespace Visutron900PlusInterface.Adapter.Test
             outputDataRef.Pupillendistanz = 64;
 
             outputDataRef.HornhautScheitelAbstand = 16;
-            outputDataRef.Fusionsbreite = 0.60;
+            outputDataRef.Fusionsbreite = 1.50;
             outputDataRef.Visus_S_C= 0.60;
             outputDataRef.Visus_C_C= 0.80;
+
+            outputDataRef.GesamtprismaHorizontal = PrismaHorizontal.IN;
+            outputDataRef.GesamtprismaVertikal = PrismaVertikal.DOWN;
 
             outputDataRef.Patientenname = "Hans Mustermann";
             outputDataRef.PatientenID = "0123456789*abc";
@@ -120,6 +123,9 @@ namespace Visutron900PlusInterface.Adapter.Test
             Assert.AreEqual(outputDataRef.Fusionsbreite, output.Fusionsbreite, "Fusionsbreite");
             Assert.AreEqual(outputDataRef.Visus_S_C, output.Visus_S_C, "Visus_S_C");
             Assert.AreEqual(outputDataRef.Visus_C_C, output.Visus_C_C, "Visus_C_C");
+
+            Assert.AreEqual(outputDataRef.GesamtprismaHorizontal, output.GesamtprismaHorizontal, "GesamtprismaHorizontal");
+            Assert.AreEqual(outputDataRef.GesamtprismaVertikal, output.GesamtprismaVertikal, "GesamtprismaVertikal");
 
             Assert.AreEqual(outputDataRef.Patientenname, output.Patientenname, "Patientenname");
             Assert.AreEqual(outputDataRef.PatientenID, output.PatientenID, "PatientenID");

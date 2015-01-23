@@ -16,7 +16,7 @@ SPH_F_L: - 1.50
 SPH_N_L: - 0.50
 CYLC_L  : - 2.50
 AXIS_L :    145
-PRISM_L:   3.50 IN
+PRISM_L:   3.50 DOWN
 ACC_L  : + 0.25
 VIS_S_L:   0.40
 VIS_C_L:   0.80

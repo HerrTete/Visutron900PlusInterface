@@ -4,14 +4,14 @@ namespace Visutron900PlusInterface.Adapter
 {
     public class Visutron900PlusSerialAdapter
     {
-        public Acknowlege SendData(RefraktionDataIn refraktionDataIn)
+        public Acknowlege SendData(RefraktionData refraktionData)
         {
             return Acknowlege.Acknowledge;
         }
 
-        public RefraktionDataIn ReceiveData()
+        public RefraktionData ReceiveData()
         {
-            return new RefraktionDataIn();
+            return new RefraktionData();
         }
     }
 }

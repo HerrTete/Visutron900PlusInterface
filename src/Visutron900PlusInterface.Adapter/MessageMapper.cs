@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using Visutron900PlusInterface.Adapter.DTOs;
@@ -10,7 +11,7 @@ namespace Visutron900PlusInterface.Adapter
 {
     internal class MessageMapper
     {
-        internal static byte[] Map(RefraktionDataIn inputData)
+        internal static byte[] Map(RefraktionData inputData)
         {
             var template = ValueConverter.GetInputPattern();
             var returnBuffer = new List<byte>();
@@ -32,7 +33,7 @@ namespace Visutron900PlusInterface.Adapter
             return returnBuffer.ToArray();
         }
 
-        internal static RefraktionDataOut Map(byte[] inputData)
+        internal static RefraktionData Map(byte[] inputData)
         {
             var isInValuePart = false;
             var valueCounter = 0;
@@ -55,17 +56,20 @@ namespace Visutron900PlusInterface.Adapter
                 }
                 if (inputByte == ':')
                 {
+                    if (!isInValuePart)
+                    {
+                        valueContent = new List<byte>();
+                    }
                     isInValuePart = true;
-                    valueContent = new List<byte>();
                 }
             }
 
             return GenerateRefraktionData(contentList);
         }
 
-        private static RefraktionDataOut GenerateRefraktionData(List<string> valueList)
+        private static RefraktionData GenerateRefraktionData(List<string> valueList)
         {
-            var refraktionData = new RefraktionDataOut();
+            var refraktionData = new RefraktionData();
             var properties = refraktionData.GetType().GetProperties();
 
             for (int i = 0; i < valueList.Count; i++)
@@ -100,8 +104,14 @@ namespace Visutron900PlusInterface.Adapter
                                         targetValue = int.Parse(sourceStringValue);
                                         break;
                                     case "Visutron900PlusInterface.Adapter.DTOs.PrismaHorizontal":
+                                        targetValue = ValueConverter.ConvertStringToPrismaHorizontal(sourceStringValue);
                                         break;
                                     case "Visutron900PlusInterface.Adapter.DTOs.PrismaVertikal":
+                                        targetValue = ValueConverter.ConvertStringToPrismaVertikal(sourceStringValue);
+                                        break;
+                                    case "System.DateTime":
+                                        var currentValue = (DateTime)propertyInfo.GetValue(refraktionData);
+                                        targetValue = ValueConverter.ConvertStringsToDataTime(sourceStringValue, currentValue);
                                         break;
                                 }
 
@@ -120,7 +130,7 @@ namespace Visutron900PlusInterface.Adapter
             return refraktionData;
         }
 
-        private static byte[] GetValue(RefraktionDataIn inputData, int index)
+        private static byte[] GetValue(RefraktionData inputData, int index)
         {
             string outputString = null;
             var data = GetValueWithIndex(inputData, index);
@@ -129,7 +139,7 @@ namespace Visutron900PlusInterface.Adapter
             return outputString == null ? null : Encoding.ASCII.GetBytes(outputString);
         }
 
-        private static bool GetIndexSettingWithIndex(RefraktionDataIn instance, int index)
+        private static bool GetIndexSettingWithIndex(RefraktionData instance, int index)
         {
             bool retVal = false;
             var properties = instance.GetType().GetProperties();
@@ -215,10 +225,10 @@ namespace Visutron900PlusInterface.Adapter
             switch (typeString)
             {
                 case "System.Double":
-                    retVal = ValueConverter.GetDoubleAlsString((double)value, focePlusSign);
+                    retVal = GetDoubleAlsString((double)value, focePlusSign);
                     break;
                 case "System.Int32":
-                    retVal = ValueConverter.GetIntAlsString((int)value);
+                    retVal = GetIntAlsString((int)value);
                     break;
                 case "System.String":
                     retVal = ((string)value);
@@ -264,7 +274,47 @@ namespace Visutron900PlusInterface.Adapter
         private static string GetIntAlsString(int inputValue)
         {
             var stringRepresentation = inputValue.ToString(CultureInfo.InvariantCulture).PadLeft(7);
-            return stringRepresentation.Replace(',', '.');
+            return stringRepresentation;
+        }
+
+        public static PrismaHorizontal ConvertStringToPrismaHorizontal(string sourceStringValue)
+        {
+            var wert = sourceStringValue.Split(' ').LastOrDefault();
+            return (PrismaHorizontal)Enum.Parse(typeof(PrismaHorizontal), wert);
+        }
+
+        public static PrismaVertikal ConvertStringToPrismaVertikal(string sourceStringValue)
+        {
+            var wert = sourceStringValue.Split(' ').LastOrDefault();
+            return (PrismaVertikal)Enum.Parse(typeof(PrismaVertikal), wert);
+        }
+
+        public static DateTime ConvertStringsToDataTime(string sourceStringValue, DateTime currentValue)
+        {
+            var hour = currentValue.Hour;
+            var minute = currentValue.Minute;
+            var day = currentValue.Day;
+            var month = currentValue.Month;
+            var year = currentValue.Year;
+
+            sourceStringValue = sourceStringValue.Trim();
+
+            if (sourceStringValue.Contains(':'))
+            {
+                var split = sourceStringValue.Split(':');
+                hour = int.Parse(split[0]);
+                minute = int.Parse(split[1]);
+
+            }
+            else
+            {
+                var split = sourceStringValue.Split('.');
+                day = int.Parse(split[0]);
+                month = int.Parse(split[1]);
+                year = int.Parse(split[2]);
+
+            }
+            return new DateTime(year, month, day, hour, minute, 0);
         }
     }
 }

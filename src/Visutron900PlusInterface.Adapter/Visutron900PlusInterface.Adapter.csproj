@@ -42,12 +42,11 @@
     <Compile Include="DTOs\Acknowlege.cs" />
     <Compile Include="DTOs\PrismaHorizontal.cs" />
     <Compile Include="DTOs\PrismaVertikal.cs" />
-    <Compile Include="DTOs\RefraktionDataOut.cs" />
     <Compile Include="IndexAttribute.cs" />
     <Compile Include="MessageMapper.cs" />
     <Compile Include="Visutron900PlusSerialAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DTOs\RefraktionDataIn.cs" />
+    <Compile Include="DTOs\RefraktionData.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MessagePattern\TelegrammVisutron900_In_Pattern" />
