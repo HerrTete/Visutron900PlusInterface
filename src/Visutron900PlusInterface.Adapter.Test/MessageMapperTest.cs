@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Reflection;
+using System.Text;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Visutron900PlusInterface.Adapter.DTOs;
 
@@ -11,6 +13,7 @@ namespace Visutron900PlusInterface.Adapter.Test
         [TestMethod]
         public void MapToInMessageTest()
         {
+            var messageMapper = new MessageMapper(Encoding.ASCII);
             var inputData = new RefraktionData();
 
             inputData.SphäreFernRechts = 3.75;
@@ -32,7 +35,7 @@ namespace Visutron900PlusInterface.Adapter.Test
             inputData.Patientenname = "Hans Mustermann";
             inputData.PatientenID = "0123456789";
 
-            var bytes = MessageMapper.Map(inputData);
+            var bytes = messageMapper.Map(inputData);
 
             var refBytes = GetRefMessage("Visutron900PlusInterface.Adapter.Test.ReferenceMessages.TelegrammVisutron900_In_Ref");
 
@@ -51,7 +54,7 @@ namespace Visutron900PlusInterface.Adapter.Test
         [TestMethod]
         public void MapFromOutMessageTest()
         {
-
+            var messageMapper = new MessageMapper(Encoding.ASCII);
             var outputDataRef = new RefraktionData();
 
             outputDataRef.SphäreFernRechts = 3.75;
@@ -93,7 +96,7 @@ namespace Visutron900PlusInterface.Adapter.Test
 
             var refBytes = GetRefMessage("Visutron900PlusInterface.Adapter.Test.ReferenceMessages.TelegrammVisutron900_Out_Ref");
 
-            var output = MessageMapper.Map(refBytes);
+            var output = messageMapper.Map(refBytes);
 
             Assert.AreEqual(outputDataRef.SphäreFernRechts, output.SphäreFernRechts, "SphäreFernRechts");
             Assert.AreEqual(outputDataRef.SphäreNahRechts, output.SphäreNahRechts, "SphäreNahRechts");

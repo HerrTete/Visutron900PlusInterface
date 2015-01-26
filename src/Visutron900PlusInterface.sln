@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visutron900PlusInterface.ConsoleHost", "Visutron900PlusInterface.ConsoleHost\Visutron900PlusInterface.ConsoleHost.csproj", "{1BDC2D3E-0458-4A6C-AF5E-E8F0E1920E87}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visutron900PlusInterface.Adapter", "Visutron900PlusInterface.Adapter\Visutron900PlusInterface.Adapter.csproj", "{D92EC2DB-41A3-4A25-930B-4DE89000F79F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visutron900PlusInterface.Messages", "Visutron900PlusInterface.Adapter\Visutron900PlusInterface.Messages.csproj", "{D92EC2DB-41A3-4A25-930B-4DE89000F79F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3A90B69A-F5E8-461D-B2D9-DECCED7EEE91}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visutron900PlusInterface.Adapter.Test", "Visutron900PlusInterface.Adapter.Test\Visutron900PlusInterface.Adapter.Test.csproj", "{7197AE35-5C9C-45FE-9A78-439FB7BA9F4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visutron900PlusInterface.UserInterface", "Visutron900PlusInterface.UserInterface\Visutron900PlusInterface.UserInterface.csproj", "{75F3E041-C1F4-49EF-A24F-5F4DC81D4B93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visutron900PlusInterface.App", "Visutron900PlusInterface.App\Visutron900PlusInterface.App.csproj", "{799105F8-D00E-4071-9F3E-5114986A1EB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visutron900PlusInterface.Contracts", "Visutron900PlusInterface.Contracts\Visutron900PlusInterface.Contracts.csproj", "{53ADFC19-60CF-4EB5-96A2-2CA9541097D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1BDC2D3E-0458-4A6C-AF5E-E8F0E1920E87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1BDC2D3E-0458-4A6C-AF5E-E8F0E1920E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1BDC2D3E-0458-4A6C-AF5E-E8F0E1920E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1BDC2D3E-0458-4A6C-AF5E-E8F0E1920E87}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D92EC2DB-41A3-4A25-930B-4DE89000F79F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D92EC2DB-41A3-4A25-930B-4DE89000F79F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D92EC2DB-41A3-4A25-930B-4DE89000F79F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -29,6 +29,18 @@ Global
 		{7197AE35-5C9C-45FE-9A78-439FB7BA9F4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7197AE35-5C9C-45FE-9A78-439FB7BA9F4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7197AE35-5C9C-45FE-9A78-439FB7BA9F4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75F3E041-C1F4-49EF-A24F-5F4DC81D4B93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75F3E041-C1F4-49EF-A24F-5F4DC81D4B93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75F3E041-C1F4-49EF-A24F-5F4DC81D4B93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75F3E041-C1F4-49EF-A24F-5F4DC81D4B93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{799105F8-D00E-4071-9F3E-5114986A1EB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{799105F8-D00E-4071-9F3E-5114986A1EB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{799105F8-D00E-4071-9F3E-5114986A1EB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{799105F8-D00E-4071-9F3E-5114986A1EB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53ADFC19-60CF-4EB5-96A2-2CA9541097D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53ADFC19-60CF-4EB5-96A2-2CA9541097D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53ADFC19-60CF-4EB5-96A2-2CA9541097D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53ADFC19-60CF-4EB5-96A2-2CA9541097D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

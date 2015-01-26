@@ -3,26 +3,26 @@ using Visutron900PlusInterface.Adapter.DTOs;
 
 namespace Visutron900PlusInterface.Adapter
 {
-    internal class MessageMapper
+    public class MessageMapper
     {
-        private static readonly Encoding encoding;
+        private readonly Encoding _encoding;
 
-        static MessageMapper()
+        public MessageMapper(Encoding encoding)
         {
-            encoding = Encoding.ASCII;
+            _encoding = encoding;
         }
 
-        internal static byte[] Map(RefraktionData inputData)
+        public byte[] Map(RefraktionData inputData)
         {
             var messageGenerator = new MessageGenerator();
-            var valueReader = new ValueReader(encoding);
+            var valueReader = new ValueReader(_encoding);
             var values = valueReader.ReadValues(inputData);
             return messageGenerator.GeneratoreMessage(values);
         }
 
-        internal static RefraktionData Map(byte[] inputData)
+        public RefraktionData Map(byte[] inputData)
         {
-            var valueReader = new ValueReader(encoding);
+            var valueReader = new ValueReader(_encoding);
             var refraktionDataGenerator = new RefraktionDataGenerator();
             var values = valueReader.ReadValues(inputData);
             return refraktionDataGenerator.GenerateRefraktionData(values);

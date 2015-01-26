@@ -8,7 +8,7 @@ namespace Visutron900PlusInterface.Adapter
 {
     internal class RefraktionDataGenerator
     {
-        public RefraktionData GenerateRefraktionData(List<string> valueList)
+        internal RefraktionData GenerateRefraktionData(List<string> valueList)
         {
             var refraktionData = new RefraktionData();
             var properties = refraktionData.GetType().GetProperties();
