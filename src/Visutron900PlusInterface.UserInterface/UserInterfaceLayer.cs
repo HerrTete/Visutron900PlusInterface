@@ -142,8 +142,39 @@ namespace Visutron900PlusInterface.UserInterface
             _refraktionResultDataControlViewModel.Patientenname = refraktionData.Patientenname;
             _refraktionResultDataControlViewModel.PatientenID = refraktionData.PatientenID;
             _refraktionResultDataControlViewModel.RefraktionsZeitpunkt = refraktionData.RefraktionsZeitpunkt;
-            
 
+            _refraktionResultDataControlViewModel.OnPropertyChanged("SphäreFernRechts");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("SphäreNahRechts");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("ZylinderRechts");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("AchseRechts");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("PrismaRechts");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("GesamtprismaHorizontal");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("PupillendistanzRechts");
+
+            _refraktionResultDataControlViewModel.OnPropertyChanged("Visus_S_C_Rechts");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("Visus_C_C_Rechts");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("AkkommodationsbreiteRechts");
+
+            _refraktionResultDataControlViewModel.OnPropertyChanged("SphäreFernLinks");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("SphäreNahLinks");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("ZylinderLinks");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("AchseLinks");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("PrismaLinks");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("GesamtprismaVertikal");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("PupillendistanzLinks");
+
+            _refraktionResultDataControlViewModel.OnPropertyChanged("Visus_S_C_Links");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("Visus_C_C_Links");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("AkkommodationsbreiteLinks");
+
+            _refraktionResultDataControlViewModel.OnPropertyChanged("HornhautScheitelAbstand");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("Pupillendistanz");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("Fusionsbreite");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("Visus_S_C");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("Visus_C_C");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("Patientenname");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("PatientenID");
+            _refraktionResultDataControlViewModel.OnPropertyChanged("RefraktionsZeitpunkt");
         }
 
         public void Show()
