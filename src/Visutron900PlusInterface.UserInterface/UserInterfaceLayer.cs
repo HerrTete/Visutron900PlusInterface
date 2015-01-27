@@ -16,35 +16,12 @@ namespace Visutron900PlusInterface.UserInterface
         public event Action OnCloseConnection;
         public event Action<RefraktionData> OnSendRefraktionData;
 
-        private readonly MainWindow _mainWindow = null;
+        private readonly MainWindow _mainWindow = new MainWindow();
 
-        private readonly RefraktionInputDataControlViewModel _refraktionInputDataControlViewModel = null;
-        private readonly RefraktionResultDataControlViewModel _refraktionResultDataControlViewModel = null;
-        private readonly SerialPortConnectionControlViewModel _serialPortConnectionControlViewModel = null;
-        private readonly SerialPortSettingsControlViewModel _serialPortSettingsControlViewModel = null;
-
-        public UserInterfaceLayer()
-        {
-            _mainWindow = new MainWindow();
-
-            _refraktionInputDataControlViewModel = new RefraktionInputDataControlViewModel();
-            _refraktionResultDataControlViewModel = new RefraktionResultDataControlViewModel();
-            _serialPortConnectionControlViewModel = new SerialPortConnectionControlViewModel();
-            _serialPortSettingsControlViewModel = new SerialPortSettingsControlViewModel();
-
-            _serialPortConnectionControlViewModel.CreateCommand = new BaseCommand(CreateConnection);
-            _serialPortConnectionControlViewModel.OpenCommand = new BaseCommand(OnOpenConnection);
-            _serialPortConnectionControlViewModel.CloseCommand = new BaseCommand(OnCloseConnection);
-            _refraktionInputDataControlViewModel.SendCommand = new BaseCommand(SendData);
-
-            _mainWindow.RefraktionResultDataControl.DataContext = _refraktionResultDataControlViewModel;
-            _mainWindow.RefraktionInputDataControl.DataContext = _refraktionInputDataControlViewModel;
-            _mainWindow.SerialPortConnectionControl.DataContext = _serialPortConnectionControlViewModel;
-            _mainWindow.SerialPortSettingsControl.DataContext = _serialPortSettingsControlViewModel;
-
-            SetValueRanges();
-            SetDefaultValues();
-        }
+        private readonly RefraktionInputDataControlViewModel _refraktionInputDataControlViewModel = new RefraktionInputDataControlViewModel();
+        private readonly RefraktionResultDataControlViewModel _refraktionResultDataControlViewModel = new RefraktionResultDataControlViewModel();
+        private readonly SerialPortConnectionControlViewModel _serialPortConnectionControlViewModel = new SerialPortConnectionControlViewModel();
+        private readonly SerialPortSettingsControlViewModel _serialPortSettingsControlViewModel = new SerialPortSettingsControlViewModel();
 
         private void CreateConnection()
         {
@@ -124,6 +101,11 @@ namespace Visutron900PlusInterface.UserInterface
         {
             _serialPortSettingsControlViewModel.IsEnabled = canStates.CanChangeConnectionSettings;
             _serialPortSettingsControlViewModel.OnPropertyChanged("IsEnabled");
+            
+            _serialPortConnectionControlViewModel.CloseCommand.CanExecuteState = canStates.CanCloseConnection;
+            _serialPortConnectionControlViewModel.OpenCommand.CanExecuteState = canStates.CanOpenConnection;
+            _serialPortConnectionControlViewModel.CreateCommand.CanExecuteState = canStates.CanCreateConnection;
+            _refraktionInputDataControlViewModel.SendCommand.CanExecuteState = canStates.CanSend;
         }
 
         public void DisplayRefraktionData(RefraktionData refraktionData)
@@ -167,6 +149,24 @@ namespace Visutron900PlusInterface.UserInterface
         public void Show()
         {
             _mainWindow.ShowDialog();
+        }
+
+        public void Bind()
+        {
+            _serialPortConnectionControlViewModel.CreateCommand = new BaseCommand(CreateConnection);
+            _serialPortConnectionControlViewModel.OpenCommand = new BaseCommand(OnOpenConnection);
+            _serialPortConnectionControlViewModel.CloseCommand = new BaseCommand(OnCloseConnection);
+            _refraktionInputDataControlViewModel.SendCommand = new BaseCommand(SendData);
+
+            _serialPortConnectionControlViewModel.CreateCommand.CanExecuteState = true;
+
+            _mainWindow.RefraktionResultDataControl.DataContext = _refraktionResultDataControlViewModel;
+            _mainWindow.RefraktionInputDataControl.DataContext = _refraktionInputDataControlViewModel;
+            _mainWindow.SerialPortConnectionControl.DataContext = _serialPortConnectionControlViewModel;
+            _mainWindow.SerialPortSettingsControl.DataContext = _serialPortSettingsControlViewModel;
+
+            SetValueRanges();
+            SetDefaultValues();
         }
     }
 }

@@ -6,6 +6,11 @@ namespace Visutron900PlusInterface.UserInterface.ViewModel
 {
     public class RefraktionResultDataControlViewModel : BaseViewModel
     {
+        public RefraktionResultDataControlViewModel()
+        {
+            Patientenname = string.Empty;
+            PatientenID = string.Empty;
+        }
         public double SphäreFernRechts { get; set; }
         public double SphäreNahRechts { get; set; }
         public double ZylinderRechts { get; set; }

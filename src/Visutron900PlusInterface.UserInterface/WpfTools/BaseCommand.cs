@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Windows.Input;
 
 namespace Visutron900PlusInterface.UserInterface.WpfTools
@@ -13,8 +14,14 @@ namespace Visutron900PlusInterface.UserInterface.WpfTools
 
         private readonly bool _parameterless = false;
 
+        private bool _canExecute;
+
         public BaseCommand(Action executeAction, Func<bool> canExecuteFunc = null)
         {
+            if (executeAction == null)
+            {
+                throw new NoNullAllowedException("executeAction should not be null");
+            }
             _executeAction = executeAction;
             _canExecuteFunc = canExecuteFunc;
             _parameterless = true;
@@ -22,8 +29,25 @@ namespace Visutron900PlusInterface.UserInterface.WpfTools
 
         public BaseCommand(Action<object> executeAction, Func<object, bool> canExecuteFunc = null)
         {
+            if (executeAction == null)
+            {
+                throw new NoNullAllowedException("executeAction should not be null");
+            }
             _executeActionWithParameter = executeAction;
             _canExecuteFuncWithParameter = canExecuteFunc;
+        }
+
+        public bool CanExecuteState
+        {
+            get
+            {
+                return !_parameterless || _canExecuteFunc();
+            }
+            set
+            {
+                _canExecute = value;
+                RaiseCanExecuteChanged();
+            }
         }
 
         public bool CanExecute(object parameter)
@@ -31,7 +55,7 @@ namespace Visutron900PlusInterface.UserInterface.WpfTools
             var canExecute = false;
             if (_canExecuteFunc == null)
             {
-                canExecute = true;
+                canExecute = _canExecute;
             }
             else
             {

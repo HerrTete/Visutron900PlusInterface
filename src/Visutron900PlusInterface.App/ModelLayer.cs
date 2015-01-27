@@ -41,6 +41,8 @@ namespace Visutron900PlusInterface.App
                     OnRefraktionDataReceived(_messageMapper.Map(buffer));
                 }
             };
+
+            _canStates.CanCreateConnection = false;
             _canStates.CanOpenConnection = true;
             _canStates.CanChangeConnectionSettings = false;
             OnCanChanged(_canStates);
@@ -49,14 +51,21 @@ namespace Visutron900PlusInterface.App
         public void CloseConnection()
         {
             _serialPort.Close();
+
             _canStates.CanChangeConnectionSettings = true;
+            _canStates.CanCreateConnection = true;
+            _canStates.CanCloseConnection = false;
+            _canStates.CanSend = false;
             OnCanChanged(_canStates);
         }
 
         public void OpenConnection()
         {
             _serialPort.Open();
+
             _canStates.CanCloseConnection = true;
+            _canStates.CanOpenConnection = false;
+            _canStates.CanSend = true;
             OnCanChanged(_canStates);
         }
 

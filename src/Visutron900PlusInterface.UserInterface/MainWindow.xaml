@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:userControls="clr-namespace:Visutron900PlusInterface.UserInterface.UserControls"
-        Title="MainWindow" Height="786" Width="1024">
+        Title="MainWindow" SizeToContent="WidthAndHeight" WindowStyle="ToolWindow" ResizeMode="NoResize">
     <Grid Background="LightGray">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -10,12 +10,8 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <userControls:SerialPortSettingsControl Grid.Column="0" x:Name="SerialPortSettingsControl"/>
-        <userControls:SerialPortConnectionControl Grid.Column="0" Grid.Row="1" x:Name="SerialPortConnectionControl"/>
+        <userControls:SerialPortSettingsControl Grid.Column="0" x:Name="SerialPortSettingsControl" VerticalAlignment="Top"/>
+        <userControls:SerialPortConnectionControl Grid.Column="0" x:Name="SerialPortConnectionControl" VerticalAlignment="Bottom"/>
         <userControls:RefraktionInputDataControl Grid.Column="2" x:Name="RefraktionInputDataControl"/>
         <userControls:RefraktionResultDataControl Grid.Column="3" x:Name="RefraktionResultDataControl"/>
     </Grid>

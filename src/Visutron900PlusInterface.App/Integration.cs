@@ -15,7 +15,8 @@ namespace Visutron900PlusInterface.App
             ui.OnSendRefraktionData += model.SendRefraktionData;
             model.OnRefraktionDataReceived += ui.DisplayRefraktionData;
             model.OnCanChanged += ui.CanChanged;
-
+            ui.Bind();
+            
             ui.Show();
         }
     }
