@@ -4,12 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             Height="100" Width="100">
+             Height="30" Width="330">
     <Grid Background="LightGray">
-        <StackPanel Orientation="Vertical">
-            <Button Content="Create" Margin="5" Command="{Binding CreateCommand}"/>
-            <Button Content="Open" Margin="5" Command="{Binding OpenCommand}"/>
-            <Button Content="Close" Margin="5" Command="{Binding CloseCommand}"/>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Create" Margin="5" Command="{Binding CreateCommand}" Width="100"/>
+            <Button Content="Open" Margin="5" Command="{Binding OpenCommand}" Width="100"/>
+            <Button Content="Close" Margin="5" Command="{Binding CloseCommand}" Width="100"/>
         </StackPanel> 
     </Grid>
 </UserControl>

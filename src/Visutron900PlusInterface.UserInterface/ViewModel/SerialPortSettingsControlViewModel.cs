@@ -6,6 +6,11 @@ namespace Visutron900PlusInterface.UserInterface.ViewModel
 {
     public class SerialPortSettingsControlViewModel : BaseViewModel
     {
+        public SerialPortSettingsControlViewModel()
+        {
+            IsEnabled = true;
+        }
+
         public bool IsEnabled { get; set; }
 
         public string Port { get; set; }

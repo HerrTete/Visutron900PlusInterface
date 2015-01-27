@@ -13,7 +13,7 @@ namespace Visutron900PlusInterface.App
         private CanStates _canStates = new CanStates();
         private SerialPort _serialPort = null;
         private MessageMapper _messageMapper = new MessageMapper(Encoding.ASCII);
-        
+
         public void CreateConnection(SerialConnectionSettings serialConnectionSettings)
         {
             if (_serialPort != null)
@@ -25,10 +25,10 @@ namespace Visutron900PlusInterface.App
                 _serialPort.Dispose();
             }
             _serialPort = new SerialPort(
-                serialConnectionSettings.PortName, 
-                serialConnectionSettings.BaudRate, 
-                serialConnectionSettings.Parity, 
-                serialConnectionSettings.DataBits, 
+                serialConnectionSettings.PortName,
+                serialConnectionSettings.BaudRate,
+                serialConnectionSettings.Parity,
+                serialConnectionSettings.DataBits,
                 serialConnectionSettings.StopBits);
 
             _serialPort.DataReceived += (sender, args) =>
@@ -42,12 +42,15 @@ namespace Visutron900PlusInterface.App
                 }
             };
             _canStates.CanOpenConnection = true;
+            _canStates.CanChangeConnectionSettings = false;
             OnCanChanged(_canStates);
         }
 
         public void CloseConnection()
         {
             _serialPort.Close();
+            _canStates.CanChangeConnectionSettings = true;
+            OnCanChanged(_canStates);
         }
 
         public void OpenConnection()

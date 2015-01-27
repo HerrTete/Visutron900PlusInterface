@@ -20,7 +20,7 @@ namespace Visutron900PlusInterface.UserInterface
 
         private readonly RefraktionInputDataControlViewModel _refraktionInputDataControlViewModel = null;
         private readonly RefraktionResultDataControlViewModel _refraktionResultDataControlViewModel = null;
-        private SerialPortConnectionControlViewModel _serialPortConnectionControlViewModel = null;
+        private readonly SerialPortConnectionControlViewModel _serialPortConnectionControlViewModel = null;
         private readonly SerialPortSettingsControlViewModel _serialPortSettingsControlViewModel = null;
 
         public UserInterfaceLayer()
@@ -71,7 +71,25 @@ namespace Visutron900PlusInterface.UserInterface
         {
             return new RefraktionData
             {
-                SphäreFernRechts = _refraktionInputDataControlViewModel.SphäreFernRechts
+                SphäreFernRechts = _refraktionInputDataControlViewModel.SphäreFernRechts,
+                SphäreNahRechts = _refraktionInputDataControlViewModel.SphäreNahRechts,
+                ZylinderRechts = _refraktionInputDataControlViewModel.ZylinderRechts,
+                AchseRechts = _refraktionInputDataControlViewModel.AchseRechts,
+                PrismaRechts = _refraktionInputDataControlViewModel.PrismaRechts,
+                GesamtprismaHorizontal = _refraktionInputDataControlViewModel.GesamtprismaHorizontal,
+                PupillendistanzRechts = _refraktionInputDataControlViewModel.PupillendistanzRechts,
+
+                SphäreFernLinks = _refraktionInputDataControlViewModel.SphäreFernLinks,
+                SphäreNahLinks = _refraktionInputDataControlViewModel.SphäreNahLinks,
+                ZylinderLinks = _refraktionInputDataControlViewModel.ZylinderLinks,
+                AchseLinks = _refraktionInputDataControlViewModel.AchseLinks,
+                PrismaLinks = _refraktionInputDataControlViewModel.PrismaLinks,
+                GesamtprismaVertikal = _refraktionInputDataControlViewModel.GesamtprismaVertikal,
+                PupillendistanzLinks = _refraktionInputDataControlViewModel.PupillendistanzLinks,
+
+                Pupillendistanz = _refraktionInputDataControlViewModel.Pupillendistanz,
+                Patientenname = _refraktionInputDataControlViewModel.Patientenname,
+                PatientenID = _refraktionInputDataControlViewModel.PatientenID
             };
         }
 
@@ -104,14 +122,46 @@ namespace Visutron900PlusInterface.UserInterface
 
         public void CanChanged(CanStates canStates)
         {
-            
+            _serialPortSettingsControlViewModel.IsEnabled = canStates.CanChangeConnectionSettings;
+            _serialPortSettingsControlViewModel.OnPropertyChanged("IsEnabled");
         }
 
         public void DisplayRefraktionData(RefraktionData refraktionData)
         {
             _refraktionResultDataControlViewModel.SphäreFernRechts = refraktionData.SphäreFernRechts;
+            _refraktionResultDataControlViewModel.SphäreNahRechts = refraktionData.SphäreNahRechts;
+            _refraktionResultDataControlViewModel.ZylinderRechts = refraktionData.ZylinderRechts;
+            _refraktionResultDataControlViewModel.AchseRechts = refraktionData.AchseRechts;
+            _refraktionResultDataControlViewModel.PrismaRechts = refraktionData.PrismaRechts;
+            _refraktionResultDataControlViewModel.GesamtprismaHorizontal = refraktionData.GesamtprismaHorizontal;
+            _refraktionResultDataControlViewModel.PupillendistanzRechts = refraktionData.PupillendistanzRechts;
 
-            _refraktionResultDataControlViewModel.OnPropertyChanged("SphäreFernRechts");
+            _refraktionResultDataControlViewModel.Visus_S_C_Rechts = refraktionData.Visus_S_C_Rechts;
+            _refraktionResultDataControlViewModel.Visus_C_C_Rechts = refraktionData.Visus_C_C_Rechts;
+            _refraktionResultDataControlViewModel.AkkommodationsbreiteRechts = refraktionData.AkkommodationsbreiteRechts;
+
+            _refraktionResultDataControlViewModel.SphäreFernLinks = refraktionData.SphäreFernLinks;
+            _refraktionResultDataControlViewModel.SphäreNahLinks = refraktionData.SphäreNahLinks;
+            _refraktionResultDataControlViewModel.ZylinderLinks = refraktionData.ZylinderLinks;
+            _refraktionResultDataControlViewModel.AchseLinks = refraktionData.AchseLinks;
+            _refraktionResultDataControlViewModel.PrismaLinks = refraktionData.PrismaLinks;
+            _refraktionResultDataControlViewModel.GesamtprismaVertikal = refraktionData.GesamtprismaVertikal;
+            _refraktionResultDataControlViewModel.PupillendistanzLinks = refraktionData.PupillendistanzLinks;
+
+            _refraktionResultDataControlViewModel.Visus_S_C_Links = refraktionData.Visus_S_C_Links;
+            _refraktionResultDataControlViewModel.Visus_C_C_Links = refraktionData.Visus_C_C_Links;
+            _refraktionResultDataControlViewModel.AkkommodationsbreiteLinks = refraktionData.AkkommodationsbreiteLinks;
+
+            _refraktionResultDataControlViewModel.HornhautScheitelAbstand = refraktionData.HornhautScheitelAbstand;
+            _refraktionResultDataControlViewModel.Pupillendistanz = refraktionData.Pupillendistanz;
+            _refraktionResultDataControlViewModel.Fusionsbreite = refraktionData.Fusionsbreite;
+            _refraktionResultDataControlViewModel.Visus_S_C = refraktionData.Visus_S_C;
+            _refraktionResultDataControlViewModel.Visus_C_C = refraktionData.Visus_C_C;
+            _refraktionResultDataControlViewModel.Patientenname = refraktionData.Patientenname;
+            _refraktionResultDataControlViewModel.PatientenID = refraktionData.PatientenID;
+            _refraktionResultDataControlViewModel.RefraktionsZeitpunkt = refraktionData.RefraktionsZeitpunkt;
+            
+
         }
 
         public void Show()
