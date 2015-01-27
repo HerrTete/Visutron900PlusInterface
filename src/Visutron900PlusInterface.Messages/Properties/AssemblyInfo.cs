@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Visutron900PlusInterface.Adapter.Test")]
+[assembly: AssemblyTitle("Visutron900PlusInterface.Adapter")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Visutron900PlusInterface.Adapter.Test")]
+[assembly: AssemblyProduct("Visutron900PlusInterface.Adapter")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("87459ee0-a549-4900-b6f4-3ea8a61fbcf6")]
+[assembly: Guid("ef8c203b-05d0-477c-8c36-a5509c99e57f")]
 
 // Version information for an assembly consists of the following four values:
 //

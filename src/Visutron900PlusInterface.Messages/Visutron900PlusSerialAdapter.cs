@@ -1,6 +1,6 @@
-﻿using Visutron900PlusInterface.Adapter.DTOs;
+﻿using Visutron900PlusInterface.Messages.DTOs;
 
-namespace Visutron900PlusInterface.Adapter
+namespace Visutron900PlusInterface.Messages
 {
     public class Visutron900PlusSerialAdapter
     {

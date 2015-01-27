@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visutron900PlusInterface.Messages", "Visutron900PlusInterface.Adapter\Visutron900PlusInterface.Messages.csproj", "{D92EC2DB-41A3-4A25-930B-4DE89000F79F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visutron900PlusInterface.Messages", "Visutron900PlusInterface.Messages\Visutron900PlusInterface.Messages.csproj", "{D92EC2DB-41A3-4A25-930B-4DE89000F79F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3A90B69A-F5E8-461D-B2D9-DECCED7EEE91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visutron900PlusInterface.Adapter.Test", "Visutron900PlusInterface.Adapter.Test\Visutron900PlusInterface.Adapter.Test.csproj", "{7197AE35-5C9C-45FE-9A78-439FB7BA9F4C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visutron900PlusInterface.Messages.Test", "Visutron900PlusInterface.Messages.Test\Visutron900PlusInterface.Messages.Test.csproj", "{7197AE35-5C9C-45FE-9A78-439FB7BA9F4C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visutron900PlusInterface.UserInterface", "Visutron900PlusInterface.UserInterface\Visutron900PlusInterface.UserInterface.csproj", "{75F3E041-C1F4-49EF-A24F-5F4DC81D4B93}"
 EndProject

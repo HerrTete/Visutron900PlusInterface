@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Visutron900PlusInterface.Adapter.DTOs;
 
-namespace Visutron900PlusInterface.Adapter
+using Visutron900PlusInterface.Messages.DTOs;
+
+namespace Visutron900PlusInterface.Messages
 {
     internal class ValueConverter
     {
@@ -52,10 +53,10 @@ namespace Visutron900PlusInterface.Adapter
                 case "System.Int32":
                     targetValue = int.Parse(sourceStringValue);
                     break;
-                case "Visutron900PlusInterface.Adapter.DTOs.PrismaHorizontal":
+                case "Visutron900PlusInterface.Messages.DTOs.PrismaHorizontal":
                     targetValue = ConvertStringToPrismaHorizontal(sourceStringValue);
                     break;
-                case "Visutron900PlusInterface.Adapter.DTOs.PrismaVertikal":
+                case "Visutron900PlusInterface.Messages.DTOs.PrismaVertikal":
                     targetValue = ConvertStringToPrismaVertikal(sourceStringValue);
                     break;
                 case "System.DateTime":

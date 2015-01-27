@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
-using Visutron900PlusInterface.Adapter.DTOs;
 
-namespace Visutron900PlusInterface.Adapter
+using Visutron900PlusInterface.Messages.DTOs;
+
+namespace Visutron900PlusInterface.Messages
 {
     internal class RefraktionDataGenerator
     {

@@ -6,8 +6,8 @@
     <ProjectGuid>{7197AE35-5C9C-45FE-9A78-439FB7BA9F4C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Visutron900PlusInterface.Adapter.Test</RootNamespace>
-    <AssemblyName>Visutron900PlusInterface.Adapter.Test</AssemblyName>
+    <RootNamespace>Visutron900PlusInterface.Messages.Test</RootNamespace>
+    <AssemblyName>Visutron900PlusInterface.Messages.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -56,7 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Visutron900PlusInterface.Adapter\Visutron900PlusInterface.Messages.csproj">
+    <ProjectReference Include="..\Visutron900PlusInterface.Messages\Visutron900PlusInterface.Messages.csproj">
       <Project>{D92EC2DB-41A3-4A25-930B-4DE89000F79F}</Project>
       <Name>Visutron900PlusInterface.Messages</Name>
     </ProjectReference>

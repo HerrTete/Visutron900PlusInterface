@@ -1,7 +1,8 @@
 ﻿using System.Text;
-using Visutron900PlusInterface.Adapter.DTOs;
 
-namespace Visutron900PlusInterface.Adapter
+using Visutron900PlusInterface.Messages.DTOs;
+
+namespace Visutron900PlusInterface.Messages
 {
     public class MessageMapper
     {

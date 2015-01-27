@@ -2,7 +2,7 @@
 using System.IO.Ports;
 using System.Text;
 
-using Visutron900PlusInterface.Adapter;
+using Visutron900PlusInterface.Messages;
 
 namespace Visutron900PlusMock
 {

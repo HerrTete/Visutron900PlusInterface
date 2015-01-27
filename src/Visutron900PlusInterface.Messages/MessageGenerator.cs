@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 
-namespace Visutron900PlusInterface.Adapter
+namespace Visutron900PlusInterface.Messages
 {
     internal class MessageGenerator
     {
@@ -30,7 +30,7 @@ namespace Visutron900PlusInterface.Adapter
         {
             var assembly = Assembly.GetExecutingAssembly();
 
-            var stream = assembly.GetManifestResourceStream("Visutron900PlusInterface.Adapter.MessagePattern.TelegrammVisutron900_In_Pattern");
+            var stream = assembly.GetManifestResourceStream("Visutron900PlusInterface.Messages.MessagePattern.TelegrammVisutron900_In_Pattern");
 
             var resouceBytes = new byte[stream.Length];
 

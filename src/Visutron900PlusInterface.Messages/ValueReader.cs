@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Text;
 
-using Visutron900PlusInterface.Adapter.DTOs;
+using Visutron900PlusInterface.Messages.DTOs;
 
-namespace Visutron900PlusInterface.Adapter
+namespace Visutron900PlusInterface.Messages
 {
     internal class ValueReader
     {

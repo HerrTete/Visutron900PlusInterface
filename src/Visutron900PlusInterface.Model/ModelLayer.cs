@@ -2,9 +2,9 @@
 using System.IO.Ports;
 using System.Text;
 
-using Visutron900PlusInterface.Adapter;
-using Visutron900PlusInterface.Adapter.DTOs;
 using Visutron900PlusInterface.Contracts;
+using Visutron900PlusInterface.Messages;
+using Visutron900PlusInterface.Messages.DTOs;
 
 namespace Visutron900PlusInterface.Model
 {

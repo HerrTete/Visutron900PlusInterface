@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.IO.Ports;
 
-using Visutron900PlusInterface.Adapter.DTOs;
 using Visutron900PlusInterface.Contracts;
+using Visutron900PlusInterface.Messages.DTOs;
 using Visutron900PlusInterface.UserInterface.ViewModel;
 using Visutron900PlusInterface.UserInterface.WpfTools;
 

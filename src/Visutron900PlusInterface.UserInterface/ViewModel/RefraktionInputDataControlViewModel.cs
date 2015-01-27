@@ -1,4 +1,4 @@
-﻿using Visutron900PlusInterface.Adapter.DTOs;
+﻿using Visutron900PlusInterface.Messages.DTOs;
 using Visutron900PlusInterface.UserInterface.WpfTools;
 
 namespace Visutron900PlusInterface.UserInterface.ViewModel

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Visutron900PlusInterface.Adapter.DTOs
+namespace Visutron900PlusInterface.Messages.DTOs
 {
     public class RefraktionData
     {

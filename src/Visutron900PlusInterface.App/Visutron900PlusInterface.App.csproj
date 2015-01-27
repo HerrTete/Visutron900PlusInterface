@@ -83,7 +83,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Visutron900PlusInterface.Adapter\Visutron900PlusInterface.Messages.csproj">
+    <ProjectReference Include="..\Visutron900PlusInterface.Messages\Visutron900PlusInterface.Messages.csproj">
       <Project>{D92EC2DB-41A3-4A25-930B-4DE89000F79F}</Project>
       <Name>Visutron900PlusInterface.Messages</Name>
     </ProjectReference>

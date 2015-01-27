@@ -3,9 +3,10 @@ using System.Reflection;
 using System.Text;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Visutron900PlusInterface.Adapter.DTOs;
 
-namespace Visutron900PlusInterface.Adapter.Test
+using Visutron900PlusInterface.Messages.DTOs;
+
+namespace Visutron900PlusInterface.Messages.Test
 {
     [TestClass]
     public class MessageMapperTest
@@ -37,7 +38,7 @@ namespace Visutron900PlusInterface.Adapter.Test
 
             var bytes = messageMapper.Map(inputData);
 
-            var refBytes = GetRefMessage("Visutron900PlusInterface.Adapter.Test.ReferenceMessages.TelegrammVisutron900_In_Ref");
+            var refBytes = GetRefMessage("Visutron900PlusInterface.Messages.Test.ReferenceMessages.TelegrammVisutron900_In_Ref");
 
 
             for (int i = 0; i < refBytes.Length; i++)
@@ -94,7 +95,7 @@ namespace Visutron900PlusInterface.Adapter.Test
 
             outputDataRef.RefraktionsZeitpunkt = new DateTime(2003, 12, 31, 15, 28, 0);
 
-            var refBytes = GetRefMessage("Visutron900PlusInterface.Adapter.Test.ReferenceMessages.TelegrammVisutron900_Out_Ref");
+            var refBytes = GetRefMessage("Visutron900PlusInterface.Messages.Test.ReferenceMessages.TelegrammVisutron900_Out_Ref");
 
             var output = messageMapper.Map(refBytes);
 

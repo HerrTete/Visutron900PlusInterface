@@ -1,6 +1,6 @@
 ﻿using System;
 
-using Visutron900PlusInterface.Adapter.DTOs;
+using Visutron900PlusInterface.Messages.DTOs;
 
 namespace Visutron900PlusInterface.Contracts
 {
