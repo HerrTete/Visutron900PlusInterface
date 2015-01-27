@@ -35,12 +35,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -57,7 +53,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ModelLayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Integration.cs" />
@@ -95,6 +90,10 @@
     <ProjectReference Include="..\Visutron900PlusInterface.Contracts\Visutron900PlusInterface.Contracts.csproj">
       <Project>{53ADFC19-60CF-4EB5-96A2-2CA9541097D3}</Project>
       <Name>Visutron900PlusInterface.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Visutron900PlusInterface.Model\Visutron900PlusInterface.Model.csproj">
+      <Project>{3C2852EA-7548-47AF-AC23-5889257CC9FC}</Project>
+      <Name>Visutron900PlusInterface.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Visutron900PlusInterface.UserInterface\Visutron900PlusInterface.UserInterface.csproj">
       <Project>{75F3E041-C1F4-49EF-A24F-5F4DC81D4B93}</Project>

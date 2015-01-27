@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visutron900PlusInterface.Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visutron900PlusInterface.Contracts", "Visutron900PlusInterface.Contracts\Visutron900PlusInterface.Contracts.csproj", "{53ADFC19-60CF-4EB5-96A2-2CA9541097D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visutron900PlusInterface.Model", "Visutron900PlusInterface.Model\Visutron900PlusInterface.Model.csproj", "{3C2852EA-7548-47AF-AC23-5889257CC9FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{53ADFC19-60CF-4EB5-96A2-2CA9541097D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53ADFC19-60CF-4EB5-96A2-2CA9541097D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53ADFC19-60CF-4EB5-96A2-2CA9541097D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C2852EA-7548-47AF-AC23-5889257CC9FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C2852EA-7548-47AF-AC23-5889257CC9FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C2852EA-7548-47AF-AC23-5889257CC9FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C2852EA-7548-47AF-AC23-5889257CC9FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

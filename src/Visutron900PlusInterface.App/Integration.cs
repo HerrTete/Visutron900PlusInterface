@@ -1,4 +1,5 @@
-﻿using Visutron900PlusInterface.UserInterface;
+﻿using Visutron900PlusInterface.Model;
+using Visutron900PlusInterface.UserInterface;
 
 namespace Visutron900PlusInterface.App
 {

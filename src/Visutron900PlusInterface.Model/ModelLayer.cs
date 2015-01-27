@@ -6,7 +6,7 @@ using Visutron900PlusInterface.Adapter;
 using Visutron900PlusInterface.Adapter.DTOs;
 using Visutron900PlusInterface.Contracts;
 
-namespace Visutron900PlusInterface.App
+namespace Visutron900PlusInterface.Model
 {
     public class ModelLayer : IModelLayer
     {
