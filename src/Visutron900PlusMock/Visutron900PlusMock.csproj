@@ -48,9 +48,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Visutron900PlusInterface.Contracts\Visutron900PlusInterface.Contracts.csproj">
+      <Project>{53adfc19-60cf-4eb5-96a2-2ca9541097d3}</Project>
+      <Name>Visutron900PlusInterface.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Visutron900PlusInterface.Messages\Visutron900PlusInterface.Messages.csproj">
       <Project>{D92EC2DB-41A3-4A25-930B-4DE89000F79F}</Project>
       <Name>Visutron900PlusInterface.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Visutron900PlusInterface.Model\Visutron900PlusInterface.Model.csproj">
+      <Project>{3c2852ea-7548-47af-ac23-5889257cc9fc}</Project>
+      <Name>Visutron900PlusInterface.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

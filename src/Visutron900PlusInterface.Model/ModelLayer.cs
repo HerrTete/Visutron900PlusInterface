@@ -11,37 +11,18 @@ namespace Visutron900PlusInterface.Model
     public class ModelLayer : IModelLayer
     {
         private CanStates _canStates = new CanStates();
-        private SerialPort _serialPort = null;
-        private MessageMapper _messageMapper = new MessageMapper(Encoding.ASCII);
+
+        private SerialPortAdapter _serialPortAdapter = null;
+
+        public ModelLayer()
+        {
+            _serialPortAdapter = new SerialPortAdapter();
+        }
 
         public void CreateConnection(SerialConnectionSettings serialConnectionSettings)
         {
-            if (_serialPort != null)
-            {
-                if (_serialPort.IsOpen)
-                {
-                    _serialPort.Close();
-                }
-                _serialPort.Dispose();
-            }
-            _serialPort = new SerialPort(
-                serialConnectionSettings.PortName,
-                serialConnectionSettings.BaudRate,
-                serialConnectionSettings.Parity,
-                serialConnectionSettings.DataBits,
-                serialConnectionSettings.StopBits);
-
-            _serialPort.DataReceived += (sender, args) =>
-            {
-                var port = sender as SerialPort;
-                if (port != null)
-                {
-                    var buffer = new byte[port.BytesToRead];
-                    port.Read(buffer, 0, buffer.Length);
-                    OnRefraktionDataReceived(_messageMapper.Map(buffer));
-                }
-            };
-
+            _serialPortAdapter.Create(serialConnectionSettings);
+            _serialPortAdapter.RefraktionDataReceived += OnRefraktionDataReceived;
             _canStates.CanCreateConnection = false;
             _canStates.CanOpenConnection = true;
             _canStates.CanChangeConnectionSettings = false;
@@ -50,7 +31,7 @@ namespace Visutron900PlusInterface.Model
 
         public void CloseConnection()
         {
-            _serialPort.Close();
+            _serialPortAdapter.Close();
 
             _canStates.CanChangeConnectionSettings = true;
             _canStates.CanCreateConnection = true;
@@ -61,7 +42,7 @@ namespace Visutron900PlusInterface.Model
 
         public void OpenConnection()
         {
-            _serialPort.Open();
+            _serialPortAdapter.Open();
 
             _canStates.CanCloseConnection = true;
             _canStates.CanOpenConnection = false;
@@ -71,8 +52,7 @@ namespace Visutron900PlusInterface.Model
 
         public void SendRefraktionData(RefraktionData refraktionData)
         {
-            var bytes = _messageMapper.Map(refraktionData);
-            _serialPort.Write(bytes, 0, bytes.Length);
+            _serialPortAdapter.SendRefraktionData(refraktionData);
         }
 
         public event Action<CanStates> OnCanChanged;
