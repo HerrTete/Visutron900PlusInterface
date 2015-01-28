@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using Visutron900PlusInterface.Contracts;
 using Visutron900PlusInterface.Messages;
 using Visutron900PlusInterface.Messages.DTOs;
@@ -12,12 +14,17 @@ namespace Visutron900PlusInterface.Model
 {
     public class SerialPortAdapter : IDisposable
     {
+        byte MESSAGE_END = 0x03;
+        byte ACKNOWLEDGE = 0x06;
+        byte NOT_ACKNOWLEDGE = 0x15;
         SerialPort _serialPort = null;
         MessageMapper _messageMapper = null;
-        
+
+        private bool _waitingForAcknowledgement = false;
+
         public void Create(SerialConnectionSettings serialConnectionSettings)
         {
-            if(_messageMapper == null)
+            if (_messageMapper == null)
             {
                 _messageMapper = new MessageMapper(Encoding.ASCII);
             }
@@ -36,7 +43,7 @@ namespace Visutron900PlusInterface.Model
 
         public void Open()
         {
-            if(_serialPort != null && !_serialPort.IsOpen)
+            if (_serialPort != null && !_serialPort.IsOpen)
             {
                 _serialPort.Open();
             }
@@ -53,9 +60,19 @@ namespace Visutron900PlusInterface.Model
         public void SendRefraktionData(RefraktionData refraktionData)
         {
             Trace.WriteLine("Sending Message:");
-            PrintMessage(refraktionData);            
+            PrintMessage(refraktionData);
             var bytes = _messageMapper.Map(refraktionData);
+            _waitingForAcknowledgement = true;
             _serialPort.Write(bytes, 0, bytes.Length);
+            Task.Factory.StartNew(() => 
+            {
+                Thread.Sleep(2000);
+                if(_waitingForAcknowledgement)
+                {
+                    Trace.WriteLine("Acknowledgement not received. => resending");
+                    SendRefraktionData(refraktionData);
+                }
+            });
         }
 
         public event Action<RefraktionData> RefraktionDataReceived;
@@ -66,9 +83,30 @@ namespace Visutron900PlusInterface.Model
             if (port != null)
             {
                 var buffer = new List<byte>();
+                
+                if(_waitingForAcknowledgement)
+                {
+                    var acknowledgment = port.ReadByte();
+                    if(acknowledgment == ACKNOWLEDGE)
+                    {
+                        _waitingForAcknowledgement = false;
+                        Trace.WriteLine("Acknowledgement received.");
+                        return;
+                    }
+                    else if(acknowledgment == NOT_ACKNOWLEDGE)
+                    {
+                        _waitingForAcknowledgement = true;
+                        Trace.WriteLine("Not Acknowledgement received.");
+                        return;
+                    }
+                    else
+                    {
+                        buffer.Add((byte)acknowledgment);
+                    }
+                }
 
                 byte lastByte = 0x00;
-                while (lastByte != 0x03)
+                while (lastByte != MESSAGE_END)
                 {
                     lastByte = (byte)port.ReadByte();
                     buffer.Add(lastByte);
@@ -79,10 +117,20 @@ namespace Visutron900PlusInterface.Model
 
         private void BytesReceived(byte[] bytes)
         {
-            var message = _messageMapper.Map(bytes);
-            Trace.WriteLine("MessageReceived:");
-            PrintMessage(message);
-            RefraktionDataReceived(message);
+            try
+            {
+                var message = _messageMapper.Map(bytes);
+                SendAcknowledge();
+                Trace.WriteLine("MessageReceived:");
+                PrintMessage(message);
+                RefraktionDataReceived(message);
+            }
+            catch(Exception exception)
+            {
+                SendNotAcknowledge();
+                Trace.WriteLine("Exception occured");
+                Trace.WriteLine(exception);
+            }
         }
 
         public void Dispose()
@@ -105,6 +153,16 @@ namespace Visutron900PlusInterface.Model
             }
         }
 
+        private void SendAcknowledge()
+        {
+            _serialPort.Write(new byte[] { ACKNOWLEDGE }, 0, 1);
+            Trace.WriteLine("Acknowledgement send.");
+        }
+        private void SendNotAcknowledge()
+        {
+            _serialPort.Write(new byte[] { NOT_ACKNOWLEDGE }, 0, 1);
+            Trace.WriteLine("No Acknowledgement send.");
+        }
 
         private void PrintMessage(RefraktionData data)
         {
