@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO.Ports;
 using System.Text;
 using Visutron900PlusInterface.Contracts;
@@ -13,6 +14,7 @@ namespace Visutron900PlusMock
     {
         static void Main(string[] args)
         {
+            Trace.Listeners.Add(new ConsoleTraceListener());
             var settings = new SerialConnectionSettings
             { 
                 PortName = "COM1",

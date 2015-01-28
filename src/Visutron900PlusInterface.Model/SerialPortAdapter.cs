@@ -120,9 +120,9 @@ namespace Visutron900PlusInterface.Model
             try
             {
                 var message = _messageMapper.Map(bytes);
-                SendAcknowledge();
                 Trace.WriteLine("MessageReceived:");
                 PrintMessage(message);
+                SendAcknowledge();
                 RefraktionDataReceived(message);
             }
             catch(Exception exception)
