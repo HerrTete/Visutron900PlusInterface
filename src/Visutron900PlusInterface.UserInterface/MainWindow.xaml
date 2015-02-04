@@ -10,9 +10,18 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <userControls:SerialPortSettingsControl Grid.Column="0" x:Name="SerialPortSettingsControl" VerticalAlignment="Top"/>
-        <userControls:SerialPortConnectionControl Grid.Column="0" x:Name="SerialPortConnectionControl" VerticalAlignment="Bottom"/>
-        <userControls:RefraktionInputDataControl Grid.Column="2" x:Name="RefraktionInputDataControl"/>
-        <userControls:RefraktionResultDataControl Grid.Column="3" x:Name="RefraktionResultDataControl"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="Verbindungseinstellugnen" HorizontalAlignment="Center" FontWeight="Bold" Margin="15" Grid.Column="0" Grid.Row="0"/>
+        <TextBlock Text="Eingabeparameter" HorizontalAlignment="Center" FontWeight="Bold" Margin="15" Grid.Column="2" Grid.Row="0"/>
+        <TextBlock Text="Ausgabeparameter" HorizontalAlignment="Center" FontWeight="Bold" Margin="15" Grid.Column="3" Grid.Row="0"/>
+        
+        <userControls:SerialPortSettingsControl Grid.Column="0" Grid.Row="1" x:Name="SerialPortSettingsControl" VerticalAlignment="Top" Margin="15,45,15,0"/>
+        <userControls:SerialPortConnectionControl Grid.Column="0" Grid.Row="1" x:Name="SerialPortConnectionControl" VerticalAlignment="Bottom" Margin="15,0"/>
+        <userControls:RefraktionInputDataControl Grid.Column="2" Grid.Row="1" x:Name="RefraktionInputDataControl" Margin="15,0"/>
+        <userControls:RefraktionResultDataControl Grid.Column="3" Grid.Row="1" x:Name="RefraktionResultDataControl" Margin="15,0"/>
     </Grid>
 </Window>
