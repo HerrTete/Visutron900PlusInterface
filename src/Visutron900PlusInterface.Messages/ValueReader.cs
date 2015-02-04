@@ -97,11 +97,11 @@ namespace Visutron900PlusInterface.Messages
                             var isComposed = retVal != null;
                             if (isComposed)
                             {
-                                retVal = ValueConverter.ConvertToString((double)retVal) + " " + propertyInfo.GetValue(instance);
+                                retVal = ValueConverter.ConvertToString((double)retVal) + " " + propertyInfo.GetValue(instance, null);
                             }
                             else
                             {
-                                retVal = propertyInfo.GetValue(instance);
+                                retVal = propertyInfo.GetValue(instance, null);
                             }
                         }
                     }

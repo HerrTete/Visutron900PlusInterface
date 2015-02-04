@@ -18,7 +18,7 @@ namespace Visutron900PlusInterface.Messages
             {
                 foreach (var propertyInfo in properties)
                 {
-                    var attributes = propertyInfo.GetCustomAttributes(typeof(IndexAttribute));
+                    var attributes = propertyInfo.GetCustomAttributes(typeof(IndexAttribute), false);
                     foreach (var attribute in attributes)
                     {
                         var indexer = attribute as IndexAttribute;
@@ -26,12 +26,12 @@ namespace Visutron900PlusInterface.Messages
                         {
                             var targetTypeString = propertyInfo.PropertyType.ToString();
                             var sourceStringValue = valueList[i];
-                            var currentValue = propertyInfo.GetValue(refraktionData);
+                            var currentValue = propertyInfo.GetValue(refraktionData, null);
 
                             try
                             {
                                 var targetValue = ValueConverter.ConvertFromString(targetTypeString, sourceStringValue, currentValue);
-                                propertyInfo.SetValue(refraktionData, targetValue);
+                                propertyInfo.SetValue(refraktionData, targetValue, null);
                             }
                             catch (Exception exception)
                             {
